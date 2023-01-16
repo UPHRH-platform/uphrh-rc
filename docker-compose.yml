@@ -11,11 +11,16 @@ services:
     volumes:
       - db:/var/lib/postgresql/data
 
+  casa-user-data-service:
+    build:
+      context: https://github.com/UPHRH-platform/casa-user-data-service.git
+
   keycloak-casa:
     image: keycloak-casa
     build: ./keycloak-casa
     depends_on:
       - keycloak-casa-db
+      - casa-user-data-service
     ports:
       - 8080:8080 
     environment:
@@ -28,7 +33,6 @@ services:
       KEYCLOAK_ADMIN_PASSWORD: admin
     command:
       - "start-dev"
-
 
 volumes:
   db:
