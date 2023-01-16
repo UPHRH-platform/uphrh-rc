@@ -13,8 +13,11 @@ services:
 
   casa-user-data-service:
     build:
-      context: https://github.com/UPHRH-platform/casa-user-data-service.git
-
+      context: https://github.com/UPHRH-platform/casa-user-data-service.git#main
+    image: casa-user-data-service
+    ports:
+      - 3000:3000
+      
   keycloak-casa:
     image: keycloak-casa
     build: ./keycloak-casa
